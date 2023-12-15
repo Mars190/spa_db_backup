@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="window" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1">
+  <SplitPane fx:id="main" dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true"
+             VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="leftView">
+      <Label fx:id="leftLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0"
+             style="&#10;" text="Einstellungen" textAlignment="CENTER">
+        <font>
+          <Font size="18.0" fx:id="x1"/>
+        </font>
+        <textFill>
+          <Color red="0.624" green="0.624" blue="0.624" fx:id="x2"/>
+        </textFill>
+      </Label>
+      <TextField fx:id="pathForSave" layoutX="5.0" layoutY="497.0" prefHeight="25.0" prefWidth="213.0"
+                 promptText="Vollständiger Speicherpfad"/>
+      <Button fx:id="testConnect" layoutX="2.0" layoutY="537.0" mnemonicParsing="false" text="Test Connect"/>
+      <Button fx:id="save" layoutX="149.0" layoutY="537.0" mnemonicParsing="false" text="Speichern"/>
+      <TextField fx:id="db_address" layoutX="5.0" layoutY="369.0" prefHeight="25.0" prefWidth="213.0"
+                 promptText="DB Adresse"/>
+      <TextField fx:id="db_username" layoutX="5.0" layoutY="405.0" prefHeight="25.0" prefWidth="213.0"
+                 promptText="DB Benutzername"/>
+      <TextField fx:id="db_password" layoutX="5.0" layoutY="439.0" prefHeight="25.0" prefWidth="213.0"
+                 promptText="DB Passwort"/>
+      <Button fx:id="createBackUpBtn" layoutX="60.0" layoutY="66.0" mnemonicParsing="false"
+              text="Backup erstellen"/>
+    </AnchorPane>
+    <ScrollPane fx:id="middleView">
+      <AnchorPane id="Content" prefHeight="545.0" prefWidth="430.0">
+        <Label fx:id="middleLabel" alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;"
+               text="Verlauf" textAlignment="CENTER" textFill="$x2"/>
+        <ListView fx:id="backup_history" editable="true" layoutX="14.0" layoutY="41.0" prefHeight="493.0"
+                  prefWidth="413.0"/>
+      </AnchorPane>
+    </ScrollPane>
+    <AnchorPane fx:id="rightView">
+      <Label fx:id="rightLabel" alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;"
+             text="Details" textAlignment="CENTER" textFill="$x2"/>
+      <Text fx:id="size" layoutX="14.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Größe: 0 MB"/>
+      <Text fx:id="created_at" layoutX="14.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            text="Erstellt: 12.12.2023"/>
+      <Button fx:id="restoreBackUpBtn" layoutX="58.0" layoutY="537.0" mnemonicParsing="false"
+              text="Wiederherstellen"/>
+      <Button fx:id="deleteBackUpBtn" layoutX="82.0" layoutY="500.0" mnemonicParsing="false" text="Löschen"/>
+    </AnchorPane>
+  </SplitPane>
+  <HBox id="HBox" fx:id="status" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
+    <padding>
+      <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+    </padding>
+    <Label fx:id="leftStatus" maxHeight="1.7976931348623157E308" text="Not connected"
+           HBox.hgrow="ALWAYS">
+      <font>
+        <Font size="11.0" fx:id="x3"/>
+      </font>
+      <textFill>
+        <Color red="0.625" green="0.625" blue="0.625" fx:id="x4"/>
+      </textFill>
+    </Label>
+    <Pane HBox.hgrow="ALWAYS"/>
+    <Label fx:id="rightStatus" font="$x3" text="Last Backup: None" textFill="$x4" HBox.hgrow="NEVER"/>
+  </HBox>
+</VBox>
