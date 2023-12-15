@@ -47,8 +47,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="window" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spa_db_backup.AppController">
   <SplitPane fx:id="main" dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true"
              VBox.vgrow="ALWAYS">
     <AnchorPane fx:id="leftView">
@@ -63,15 +63,19 @@
       </Label>
       <TextField fx:id="pathForSave" layoutX="5.0" layoutY="497.0" prefHeight="25.0" prefWidth="213.0"
                  promptText="Vollständiger Speicherpfad"/>
-      <Button fx:id="testConnect" layoutX="2.0" layoutY="537.0" mnemonicParsing="false" text="Test Connect"/>
-      <Button fx:id="save" layoutX="149.0" layoutY="537.0" mnemonicParsing="false" text="Speichern"/>
+
+      <Button onAction="#onTestConnectButtonClick" fx:id="testConnect" layoutX="2.0" layoutY="537.0" mnemonicParsing="false" text="Test Connect"/>
+      <Button onAction="#onSaveButtonClick" fx:id="save" layoutX="149.0" layoutY="537.0" mnemonicParsing="false" text="Speichern"/>
+
       <TextField fx:id="db_address" layoutX="5.0" layoutY="369.0" prefHeight="25.0" prefWidth="213.0"
                  promptText="DB Adresse"/>
       <TextField fx:id="db_username" layoutX="5.0" layoutY="405.0" prefHeight="25.0" prefWidth="213.0"
                  promptText="DB Benutzername"/>
+      <!--Change TextField to Password-->
       <TextField fx:id="db_password" layoutX="5.0" layoutY="439.0" prefHeight="25.0" prefWidth="213.0"
                  promptText="DB Passwort"/>
-      <Button fx:id="createBackUpBtn" layoutX="60.0" layoutY="66.0" mnemonicParsing="false"
+
+      <Button onAction="#onCreateBackUpClick" fx:id="createBackUp" layoutX="60.0" layoutY="66.0" mnemonicParsing="false"
               text="Backup erstellen"/>
     </AnchorPane>
     <ScrollPane fx:id="middleView">
@@ -85,12 +89,14 @@
     <AnchorPane fx:id="rightView">
       <Label fx:id="rightLabel" alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;"
              text="Details" textAlignment="CENTER" textFill="$x2"/>
-      <Text fx:id="size" layoutX="14.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Größe: 0 MB"/>
+      <Text fx:id="file_size" layoutX="14.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Größe: 0 MB"/>
       <Text fx:id="created_at" layoutX="14.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0"
             text="Erstellt: 12.12.2023"/>
-      <Button fx:id="restoreBackUpBtn" layoutX="58.0" layoutY="537.0" mnemonicParsing="false"
+
+      <Button onAction="#onRestoreBackUpClick" fx:id="restoreBackUp" layoutX="58.0" layoutY="537.0" mnemonicParsing="false"
               text="Wiederherstellen"/>
-      <Button fx:id="deleteBackUpBtn" layoutX="82.0" layoutY="500.0" mnemonicParsing="false" text="Löschen"/>
+      <Button onAction="#onDeleteBackUpClick" fx:id="deleteBackUp" layoutX="82.0" layoutY="500.0" mnemonicParsing="false" text="Löschen"/>
+
     </AnchorPane>
   </SplitPane>
   <HBox id="HBox" fx:id="status" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
